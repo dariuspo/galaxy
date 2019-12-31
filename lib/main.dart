@@ -27,9 +27,36 @@ class Galaxy extends StatefulWidget {
   _GalaxyState createState() => _GalaxyState();
 }
 
-class _GalaxyState extends State<Galaxy> {
+class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
+  Animation<Offset> cornerPlanetAnimation;
+  AnimationController cornerPlanetController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // TODO: implement initState
+    cornerPlanetController = AnimationController(
+        lowerBound: 0.0,
+        upperBound: 1.0,
+        duration: const Duration(milliseconds: 3000),
+        vsync: this);
+    cornerPlanetAnimation = Tween(
+      begin: Offset(1.0, 1.0),
+      end: Offset(0.0, 0.0),
+    ).animate(
+      CurvedAnimation(
+        parent: cornerPlanetController,
+        curve: Interval(0.0, 1.0, curve: Curves.linear),
+      ),
+    );
+    cornerPlanetController.repeat();
+  }
+
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -43,14 +70,6 @@ class _GalaxyState extends State<Galaxy> {
         child: Center(
           child: Stack(
             children: <Widget>[
-              Transform.translate(
-                offset: Offset(0.0, 0.0),
-                child: ShapeBuilder(
-                  radius: 50,
-                  color: Colors.black,
-                  boxShape: BoxShape.circle,
-                ),
-              ),
               Transform.translate(
                 offset: Offset(-80, 0.0),
                 child: ShapeBuilder(
@@ -85,6 +104,29 @@ class _GalaxyState extends State<Galaxy> {
                 child: ShapeBuilder(
                   color: Colors.brown,
                   radius: 50,
+                  boxShape: BoxShape.circle,
+                ),
+              ),
+              AnimatedBuilder(
+                animation: cornerPlanetAnimation,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(
+                    (screenWidth / 2) * cornerPlanetAnimation.value.dx,
+                    (screenHeight / (-2) - 100) *
+                        cornerPlanetAnimation.value.dy,
+                  ),
+                  child: ShapeBuilder(
+                    color: Colors.red,
+                    radius: 20,
+                    boxShape: BoxShape.rectangle,
+                  ),
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(0.0, 0.0),
+                child: ShapeBuilder(
+                  radius: 50,
+                  color: Colors.black,
                   boxShape: BoxShape.circle,
                 ),
               ),
