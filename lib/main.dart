@@ -75,7 +75,7 @@ class _GalaxyState extends State<Galaxy> with TickerProviderStateMixin {
         vsync: this);
     spiralPlanetAnimation = Tween(
       begin: Offset(0.0, 0.0),
-      end: Offset(2.0, 2.0),
+      end: Offset(10.0, 10.0),
     ).animate(
       CurvedAnimation(
         parent: spiralPlanetController,
@@ -156,7 +156,7 @@ class _GalaxyState extends State<Galaxy> with TickerProviderStateMixin {
                     ),
                   ),
                   MovementAnimationBuilder(
-                    radius: 160,
+                    radius: 125,
                     animationMovement: spiralPlanetAnimation,
                     child: ShapeBuilder(
                       color: Colors.lightBlue,
@@ -165,7 +165,7 @@ class _GalaxyState extends State<Galaxy> with TickerProviderStateMixin {
                     ),
                   ),
                   MovementAnimationBuilder(
-                    radius: 220,
+                    radius: 166.67,
                     animationMovement: spiralPlanetAnimation,
                     child: ShapeBuilder(
                       color: Colors.deepOrange,
@@ -174,14 +174,14 @@ class _GalaxyState extends State<Galaxy> with TickerProviderStateMixin {
                     ),
                   ),
                   MovementAnimationBuilder(
-                      radius: 300,
+                      radius: 250,
                       animationMovement: spiralPlanetAnimation,
                       child: TriangleBuilder(
                         radius: 20,
                         color: Colors.redAccent,
                       )),
                   MovementAnimationBuilder(
-                    radius: 400,
+                    radius: 500,
                     animationMovement: spiralPlanetAnimation,
                     child: ShapeBuilder(
                       color: Colors.pink,

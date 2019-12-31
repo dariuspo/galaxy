@@ -21,9 +21,9 @@ class _MovementAnimationBuilderState extends State<MovementAnimationBuilder> {
       animation: widget.animationMovement,
       builder: (context, child) => Transform.translate(
         offset: Offset(
-          widget.radius * cos(widget.animationMovement.value.dx * pi),
-          (widget.radius / 1.5) *
-              sin(widget.animationMovement.value.dy * pi),
+          widget.radius * cos(widget.animationMovement.value.dx * pi * 100/widget.radius),
+          (widget.radius / 2) *
+              sin(widget.animationMovement.value.dy * pi * 100/widget.radius),
         ),
         child: widget.child,
       ),
