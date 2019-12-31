@@ -47,7 +47,7 @@ class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: cornerPlanetController,
-        curve: Interval(0.0, 1.0, curve: Curves.linear),
+        curve: Curves.easeInCubic,
       ),
     );
     cornerPlanetController.repeat();
@@ -117,7 +117,7 @@ class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
                   ),
                   child: ShapeBuilder(
                     color: Colors.red,
-                    radius: 20,
+                    radius: 40*cornerPlanetAnimation.value.dx,
                     boxShape: BoxShape.rectangle,
                   ),
                 ),
