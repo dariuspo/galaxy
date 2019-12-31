@@ -2,15 +2,13 @@
 
 Galaxy App
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+This project is for screening test by mokuteki.io
 
-A few resources to get you started if this is your first Flutter project:
+the planets is revolve around a black hole in the center of the screen.
+planets speed is determined by the distance from the planet of the blackhole
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+there are few planets appear from corner of the screen and straight to the blackhole,
+the 3d rotation on X-axis caused the linear line to be curved.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
