@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-class CircleShape extends StatelessWidget {
+class ShapeBuilder extends StatelessWidget {
   final double radius;
   final Color color;
-
-  CircleShape({this.radius, this.color});
+  final BoxShape boxShape;
+  ShapeBuilder({this.radius, this.color, this.boxShape});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +11,7 @@ class CircleShape extends StatelessWidget {
       child: Container(
         width: radius,
         height: radius,
-        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-
+        decoration: BoxDecoration(color: color, shape: boxShape),
       ),
     );
   }

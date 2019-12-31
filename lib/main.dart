@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './widget/circle-shape.dart';
+import 'package:galaxy/painter/triangle-painter.dart';
+import 'package:galaxy/widget/triangle-builder.dart';
+import './widget/shape-builder.dart';
 
 void main() => runApp(MyApp());
 
@@ -43,9 +45,47 @@ class _GalaxyState extends State<Galaxy> {
             children: <Widget>[
               Transform.translate(
                 offset: Offset(0.0, 0.0),
-                child: CircleShape(
-                  radius: 40,
+                child: ShapeBuilder(
+                  radius: 50,
                   color: Colors.black,
+                  boxShape: BoxShape.circle,
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(-80, 0.0),
+                child: ShapeBuilder(
+                  radius: 10,
+                  color: Colors.grey,
+                  boxShape: BoxShape.rectangle,
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(-120.0, 0.0),
+                child: TriangleBuilder(
+                  color: Colors.orangeAccent,
+                  radius: 20,
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(-160.0, 0.0),
+                child: TriangleBuilder(
+                  color: Colors.blueAccent,
+                  radius: 30,
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(-200.0, 0.0),
+                child: TriangleBuilder(
+                  color: Colors.deepOrange,
+                  radius: 20,
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(-300.0, 0.0),
+                child: ShapeBuilder(
+                  color: Colors.brown,
+                  radius: 50,
+                  boxShape: BoxShape.circle,
                 ),
               ),
             ],
