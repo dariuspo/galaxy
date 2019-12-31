@@ -115,13 +115,73 @@ class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
                     (screenHeight / (-2) - 100) *
                         cornerPlanetAnimation.value.dy,
                   ),
+                  child: TriangleBuilder(
+                    color: Colors.deepOrange,
+                    radius: 40,
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: cornerPlanetAnimation,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(
+                    (screenWidth / (-2)- 100) * cornerPlanetAnimation.value.dx,
+                    (screenHeight / (-2)) *
+                        cornerPlanetAnimation.value.dy,
+                  ),
                   child: ShapeBuilder(
-                    color: Colors.red,
+                    color: Colors.white,
+                    radius: 40*cornerPlanetAnimation.value.dx,
+                    boxShape: BoxShape.circle,
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: cornerPlanetAnimation,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(
+                    (screenWidth / 2+100) * cornerPlanetAnimation.value.dx,
+                    (screenHeight / 2) *
+                        cornerPlanetAnimation.value.dy,
+                  ),
+                  child: ShapeBuilder(
+                    color: Colors.cyanAccent,
+                    radius: 80*cornerPlanetAnimation.value.dx,
+                    boxShape: BoxShape.rectangle,
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: cornerPlanetAnimation,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(
+                    (screenWidth / (-2)- 100) * cornerPlanetAnimation.value.dx,
+                    (screenHeight / (-2)) *
+                        cornerPlanetAnimation.value.dy,
+                  ),
+                  child: ShapeBuilder(
+                    color: Colors.white,
                     radius: 40*cornerPlanetAnimation.value.dx,
                     boxShape: BoxShape.rectangle,
                   ),
                 ),
               ),
+              AnimatedBuilder(
+                animation: cornerPlanetAnimation,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(
+                    (screenWidth / (-2)-100) * cornerPlanetAnimation.value.dx,
+                    (screenHeight / 2) *
+                        cornerPlanetAnimation.value.dy,
+                  ),
+                  child: ShapeBuilder(
+                    color: Colors.green,
+                    radius: 40*cornerPlanetAnimation.value.dx,
+                    boxShape: BoxShape.circle,
+                  ),
+                ),
+              ),
+
               Transform.translate(
                 offset: Offset(0.0, 0.0),
                 child: ShapeBuilder(
