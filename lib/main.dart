@@ -115,6 +115,14 @@ class _GalaxyState extends State<Galaxy> with TickerProviderStateMixin {
     cornerPlanetController.repeat();
   }
 
+  @override
+  void dispose() {
+    cornerPlanetController.dispose();
+    spiralPlanetController.dispose();
+    rotationGalaxyController.dispose();
+    super.dispose();
+  }
+
   Matrix4 perspective = _pmat(1.0);
 
   @override
