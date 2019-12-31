@@ -19,10 +19,10 @@ mobile landscape
 ![mobile landscape test](image1.png)
 
 mobile portrait
-![mobile portrait test](portrait-testing.png)
+![mobile portrait test](portrait%20testing.png)
 
 tablet landscape
-![tablet landscape test](tablet-landscape.png)
+![tablet landscape test](tablet%20landscape.png)
 
 tablet portrait
-![tablet portrait test](tablet landscape.png)
+![tablet portrait test](tablet%20landscape.png)
