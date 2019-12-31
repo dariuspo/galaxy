@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:galaxy/painter/triangle-painter.dart';
+import 'package:galaxy/widget/movement-animation-builder.dart';
 import 'package:galaxy/widget/triangle-builder.dart';
 import './widget/shape-builder.dart';
 
@@ -27,15 +30,32 @@ class Galaxy extends StatefulWidget {
   _GalaxyState createState() => _GalaxyState();
 }
 
-class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
+class _GalaxyState extends State<Galaxy> with TickerProviderStateMixin {
   Animation<Offset> cornerPlanetAnimation;
+  Animation<Offset> spiralPlanetAnimation;
+
   AnimationController cornerPlanetController;
+  AnimationController spiralPlanetController;
 
   @override
   void initState() {
     super.initState();
 
     // TODO: implement initState
+    spiralPlanetController = AnimationController(
+        lowerBound: 0.0,
+        upperBound: 1.0,
+        duration: const Duration(milliseconds: 6000),
+        vsync: this);
+    spiralPlanetAnimation = Tween(
+      begin: Offset(0.0, 0.0),
+      end: Offset(8.0, 8.0),
+    ).animate(
+      CurvedAnimation(
+        parent: spiralPlanetController,
+        curve: Curves.linear,
+      ),
+    );
     cornerPlanetController = AnimationController(
         lowerBound: 0.0,
         upperBound: 1.0,
@@ -50,6 +70,7 @@ class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
         curve: Curves.easeInCubic,
       ),
     );
+    spiralPlanetController.repeat();
     cornerPlanetController.repeat();
   }
 
@@ -70,40 +91,44 @@ class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
         child: Center(
           child: Stack(
             children: <Widget>[
-              Transform.translate(
-                offset: Offset(-80, 0.0),
+              MovementAnimationBuilder(
+                radius: 100,
+                animationMovement: spiralPlanetAnimation,
                 child: ShapeBuilder(
-                  radius: 10,
                   color: Colors.grey,
+                  radius: 30,
+                  boxShape: BoxShape.circle,
+                ),
+              ),
+              MovementAnimationBuilder(
+                radius: 160,
+                animationMovement: spiralPlanetAnimation,
+                child: ShapeBuilder(
+                  color: Colors.lightBlue,
+                  radius: 20,
                   boxShape: BoxShape.rectangle,
                 ),
               ),
-              Transform.translate(
-                offset: Offset(-120.0, 0.0),
-                child: TriangleBuilder(
-                  color: Colors.orangeAccent,
-                  radius: 20,
-                ),
-              ),
-              Transform.translate(
-                offset: Offset(-160.0, 0.0),
-                child: TriangleBuilder(
-                  color: Colors.blueAccent,
-                  radius: 30,
-                ),
-              ),
-              Transform.translate(
-                offset: Offset(-200.0, 0.0),
-                child: TriangleBuilder(
-                  color: Colors.deepOrange,
-                  radius: 20,
-                ),
-              ),
-              Transform.translate(
-                offset: Offset(-300.0, 0.0),
+              MovementAnimationBuilder(
+                radius: 220,
+                animationMovement: spiralPlanetAnimation,
                 child: ShapeBuilder(
-                  color: Colors.brown,
-                  radius: 50,
+                  color: Colors.deepOrange,
+                  radius: 40,
+                  boxShape: BoxShape.circle,
+                ),
+              ),
+              MovementAnimationBuilder(
+                radius: 300,
+                animationMovement: spiralPlanetAnimation,
+                child: TriangleBuilder(radius: 20,color: Colors.redAccent,)
+              ),
+              MovementAnimationBuilder(
+                radius: 400,
+                animationMovement: spiralPlanetAnimation,
+                child: ShapeBuilder(
+                  color: Colors.pink,
+                  radius: 60,
                   boxShape: BoxShape.circle,
                 ),
               ),
@@ -125,13 +150,12 @@ class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
                 animation: cornerPlanetAnimation,
                 builder: (context, child) => Transform.translate(
                   offset: Offset(
-                    (screenWidth / (-2)- 100) * cornerPlanetAnimation.value.dx,
-                    (screenHeight / (-2)) *
-                        cornerPlanetAnimation.value.dy,
+                    (screenWidth / (-2) - 100) * cornerPlanetAnimation.value.dx,
+                    (screenHeight / (-2)) * cornerPlanetAnimation.value.dy,
                   ),
                   child: ShapeBuilder(
                     color: Colors.white,
-                    radius: 40*cornerPlanetAnimation.value.dx,
+                    radius: 40 * cornerPlanetAnimation.value.dx,
                     boxShape: BoxShape.circle,
                   ),
                 ),
@@ -140,13 +164,12 @@ class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
                 animation: cornerPlanetAnimation,
                 builder: (context, child) => Transform.translate(
                   offset: Offset(
-                    (screenWidth / 2+100) * cornerPlanetAnimation.value.dx,
-                    (screenHeight / 2) *
-                        cornerPlanetAnimation.value.dy,
+                    (screenWidth / 2 + 100) * cornerPlanetAnimation.value.dx,
+                    (screenHeight / 2) * cornerPlanetAnimation.value.dy,
                   ),
                   child: ShapeBuilder(
                     color: Colors.cyanAccent,
-                    radius: 80*cornerPlanetAnimation.value.dx,
+                    radius: 80 * cornerPlanetAnimation.value.dx,
                     boxShape: BoxShape.rectangle,
                   ),
                 ),
@@ -155,13 +178,12 @@ class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
                 animation: cornerPlanetAnimation,
                 builder: (context, child) => Transform.translate(
                   offset: Offset(
-                    (screenWidth / (-2)- 100) * cornerPlanetAnimation.value.dx,
-                    (screenHeight / (-2)) *
-                        cornerPlanetAnimation.value.dy,
+                    (screenWidth / (-2) - 100) * cornerPlanetAnimation.value.dx,
+                    (screenHeight / (-2)) * cornerPlanetAnimation.value.dy,
                   ),
                   child: ShapeBuilder(
                     color: Colors.white,
-                    radius: 40*cornerPlanetAnimation.value.dx,
+                    radius: 40 * cornerPlanetAnimation.value.dx,
                     boxShape: BoxShape.rectangle,
                   ),
                 ),
@@ -170,18 +192,16 @@ class _GalaxyState extends State<Galaxy> with SingleTickerProviderStateMixin {
                 animation: cornerPlanetAnimation,
                 builder: (context, child) => Transform.translate(
                   offset: Offset(
-                    (screenWidth / (-2)-100) * cornerPlanetAnimation.value.dx,
-                    (screenHeight / 2) *
-                        cornerPlanetAnimation.value.dy,
+                    (screenWidth / (-2) - 100) * cornerPlanetAnimation.value.dx,
+                    (screenHeight / 2) * cornerPlanetAnimation.value.dy,
                   ),
                   child: ShapeBuilder(
                     color: Colors.green,
-                    radius: 40*cornerPlanetAnimation.value.dx,
+                    radius: 40 * cornerPlanetAnimation.value.dx,
                     boxShape: BoxShape.circle,
                   ),
                 ),
               ),
-
               Transform.translate(
                 offset: Offset(0.0, 0.0),
                 child: ShapeBuilder(
